@@ -56,12 +56,12 @@ namespace GroceryStoreAPI.Repositories
                 await _lock.WaitAsync();
                 _currentId++;
                 customer.Id = _currentId;
-            } 
+                _customers.TryAdd(customer.Id, customer);
+            }
             finally
             {
                 _lock.Release();
             }
-            _customers.TryAdd(_currentId, customer);
             return customer;
         }
 
