@@ -28,7 +28,7 @@ namespace GroceryStoreAPI.Services
         /// </summary>
         /// <param name="token">A <see cref="CancellationToken"/> for terminating the query.</param>
         /// <param name="customer">The <see cref="Customer"/>.</param>
-        /// <returns>A <see cref="Result"/> where <see cref="Data"/> contains the <see cref="Customer"/> or null if the operation failed, and <see cref="Result{T}.Errors"/> contain any errors.</returns>
+        /// <returns>A <see cref="Result{T}"/> where <see cref="Result{T}.Data"/> contains the <see cref="Customer"/> or null if the operation failed, and <see cref="Result{T}.Errors"/> contain any errors.</returns>
         public async Task<Result<Customer>> Add(CancellationToken token, Customer customer)
         {
             try

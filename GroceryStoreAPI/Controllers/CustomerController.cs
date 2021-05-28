@@ -14,7 +14,7 @@ namespace GroceryStoreAPI.Controllers
     /// <summary>
     /// The Customer API endpoint.
     /// </summary>
-    [Route("api/[controller]")]
+    [Route("api/customers")]
     [ApiController]
     [ApiVersion("1.0")]
     [Authorize]
@@ -26,11 +26,12 @@ namespace GroceryStoreAPI.Controllers
         }
 
         /// <summary>
-        /// Retrieve a single customer by <see cref="Customer.Id"/>.
+        /// Retrieve a single customer by id. 
+        /// Returns HTTP status 200 if successful, HTTP status 404 if the customer does not exist, HTTP status 400 if failed. The result is in the response body.
         /// </summary>
         /// <param name="token">A <see cref="CancellationToken"/> for terminating the query.</param>
-        /// <param name="id">The <see cref="Customer.Id"/>.</param>
-        /// <returns>HTTP status 200 if successful, HTTP status 404 if the <see cref="Customer"/> does not exist, HTTP status 400 if failed. The result is in the response body.</returns>
+        /// <param name="id">The customer id</param>
+        /// <returns>HTTP status 200 if successful, HTTP status 404 if the customer does not exist, HTTP status 400 if failed. The result is in the response body.</returns>
         [HttpGet("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(Customer))]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -48,7 +49,8 @@ namespace GroceryStoreAPI.Controllers
         }
 
         /// <summary>
-        /// Retrieve a list of <see cref="Customer"/>s. If no query parameters given, will retrieve all customers ordered by <see cref="Customer.Id"/>.
+        /// Retrieve a list of customers. If no query parameters given, will retrieve all customers ordered by id. 
+        /// Returns HTTP status 200 if successful, HTTP status 204 nothing found, HTTP status 400 if failed. The result is in the response body.
         /// </summary>
         /// <param name="token">A <see cref="CancellationToken"/> for terminating the query</param>
         /// <param name="fromRow">Optional, the first row in sorted order to retrieve.</param>
@@ -75,8 +77,9 @@ namespace GroceryStoreAPI.Controllers
 
         /// <summary>
         /// Update an existing customer. 
-        /// <see cref="Customer.Id"/> must contain the Id of an existing customer.
-        /// <see cref="Customer.Name"/> is a mandatory field and cannot be empty.
+        /// Customer id must contain the Id of an existing customer.
+        /// Customer name is a mandatory field and cannot be empty.
+        /// HTTP status 200 if successful, HTTP status 400 if failed. The result is in the response body.
         /// </summary>
         /// <param name="token">A <see cref="CancellationToken"/> for terminating the query.</param>
         /// <param name="customer">The <see cref="Customer"/> instance to update.</param>
@@ -95,8 +98,9 @@ namespace GroceryStoreAPI.Controllers
         }
         /// <summary>
         /// Add a new customer. 
-        /// A new customer <see cref="Customer.Id"/> must set to zero.
-        /// <see cref="Customer.Name"/> is a mandatory field and cannot be empty.
+        /// A new customer id must set to zero.
+        /// Customer name is a mandatory field and cannot be empty.
+        /// Returns HTTP status 201 if successful, HTTP status 400 if failed. The result is in the response body.
         /// </summary>
         /// <param name="token">A <see cref="CancellationToken"/> for terminating the query.</param>
         /// <param name="customer">The <see cref="Customer"/> instance to add.</param>

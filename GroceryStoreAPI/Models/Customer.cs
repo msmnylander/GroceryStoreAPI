@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text.Json.Serialization;
 
@@ -13,6 +14,7 @@ namespace GroceryStoreAPI.Models
         [JsonPropertyName("id")]
         public virtual int Id { get; set; }
         [JsonPropertyName("name")]
+        [Required]
         public virtual string Name { get; set; }
     }
 

@@ -14,7 +14,7 @@ namespace GroceryStoreAPI.Controllers
     /// <summary>
     /// The Login API endpoint.
     /// </summary>
-    [Route("api/[controller]")]
+    [Route("api/login")]
     [ApiController]
     [ApiVersion("1.0")]
     [Authorize]
