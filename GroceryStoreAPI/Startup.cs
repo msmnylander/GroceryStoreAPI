@@ -12,6 +12,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using System;
+using System.IO;
+using System.Reflection;
 
 namespace GroceryStoreAPI
 {
@@ -41,7 +44,7 @@ namespace GroceryStoreAPI
                 config.DefaultApiVersion = new ApiVersion(1, 0);
                 config.AssumeDefaultVersionWhenUnspecified = true;
                 config.ReportApiVersions = true;
-                config.ApiVersionReader = new HeaderApiVersionReader("api-version");
+                config.ApiVersionReader = new HeaderApiVersionReader("Api-Version");
             });
 
             //
@@ -59,7 +62,10 @@ namespace GroceryStoreAPI
                     Version = "1.0",
                     Title = "Grocery Store API",
                     Description = "Grocery Store Web API",
-                });           
+                });
+                var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+                c.IncludeXmlComments(xmlPath);
             });
 
             //
